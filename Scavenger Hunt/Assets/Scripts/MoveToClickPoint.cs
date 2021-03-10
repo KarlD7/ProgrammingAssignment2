@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class MoveToClickPoint : MonoBehaviour
 {
@@ -12,13 +13,21 @@ public class MoveToClickPoint : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Google.XR.Cardboard.Api.IsTriggerPressed || Input.GetMouseButtonDown(0))
         {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+            if (Physics.Raycast(ray, out hit, 50))
             {
-                this.transform.position = hit.point;
+                if(hit.transform.gameObject.name == "XboxController")
+                {
+                    SceneManager.LoadScene("Level2");
+                }
+                else
+                {
+                    this.transform.position = hit.point;
+                }
+
             }
         }
     }

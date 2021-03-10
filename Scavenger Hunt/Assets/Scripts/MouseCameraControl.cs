@@ -27,45 +27,5 @@ public class MouseCameraControl : MonoBehaviour
         transform.Rotate(horizontalRotation, Space.World); // Rotate around world y-axis
         transform.Rotate(verticalRotation, Space.Self); // Rotate around camera's x-axis
 
-        if (Input.GetMouseButtonDown(0))
-        { // if left button pressed...
-            Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
-                if(hit.transform.gameObject.name == "Mom")
-                {
-                    scText.text = "Wagaun bitch";
-                }
-                if (hit.transform.gameObject.name == "Dad")
-                {
-                    scText.text = "No sir";
-                }
-                if (hit.transform.gameObject.name == "Grandpa")
-                {
-                    scText.text = "Buss Chest";
-                }
-                if (hit.transform.gameObject.name == "Dog")
-                {
-                    scText.text = "Taking Cyard";
-                }
-                if(hit.transform.gameObject.name == "XboxController")
-                {
-                    SceneManager.LoadScene("Level2");
-                }
-                if (hit.transform.gameObject.name == "Brother")
-                {
-                    scText.text = "Buss Chest";
-                }
-                if (hit.transform.gameObject.name == "Mom1")
-                {
-                    scText.text = "Taking Cyard";
-                }
-                if (hit.transform.gameObject.name == "Dad1")
-                {
-                    finObject.GetComponent<LevelManager>().onClick();
-                }
-            }
-        }
     }
 }
